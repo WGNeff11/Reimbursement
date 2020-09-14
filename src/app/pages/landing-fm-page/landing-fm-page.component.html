@@ -1,0 +1,121 @@
+<div class="container">
+    <div class="welcome-header">
+        <p class="extra-big-header">Hello, <br> {{firstName}} {{lastName}}</p>
+    </div>
+
+    <div class="row marg no-gutters">
+        <div class="col-sm-6 flx">
+            <input type="text" [(ngModel)]="searchText" class="form-control set-box rounded-1" placeholder="Search Reimbursements"/>
+        </div>
+        <div class="col-sm-2 flx small-gutter">
+            <select class="form-control" id="inputType" [(ngModel)]="filterByType">
+                <option *ngFor="let reimbType of reimbTypes" [value] = "reimbType">{{reimbType}}</option>
+            </select>
+        </div>
+        <div class="col-sm-2 flx status-input small-gutter">
+            <select class="form-control" id="inputStatus" [(ngModel)]="filterByStatus">
+                <option *ngFor="let reimbStatus of reimbStates" [value] = "reimbStatus">{{reimbStatus}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="margins row">
+        <div class="col-sm-12">
+            <table class="table table-bordered table-striped">
+                <tr class="table-row">
+                    <th class="amount">
+                        Reimbursement Amount
+                    </th>
+                    <th class="date">
+                        Day Submitted
+                    </th>
+                    <th class="description">
+                        Description
+                    </th>
+                    <th class="resolver">
+                        Author
+                    </th>
+                    <th class="type">
+                        Type
+                    </th>
+                    <th class="receipt">
+                        Receipt
+                    </th>
+                    <!-- <th class="approve">
+                        Approve
+                    </th>
+                    <th class="deny">
+                        Deny
+                    </th> -->
+                    <th class="approve">
+                        Evaluate
+                    </th>
+                </tr>
+                <tbody>
+                    <tr class="table-row" *ngFor="let reimbursement of reimbursements | reimbursementFM: searchText | reimbursementTypePipe : filterByType | reimbursementState: filterByStatus; index as i">
+                        <td class="amount">
+                            ${{reimbursement.reimb_amount}}
+                        </td>
+                        <td>
+                            {{reimbursement.timeSubmitted.month | titlecase}} {{reimbursement.timeSubmitted.dayOfMonth}}, {{reimbursement.timeSubmitted.year}}
+                        </td>
+                        <td>
+                           {{reimbursement.description}}
+                        </td>
+                        <td>
+                            {{reimbursement.author.firstname}} {{reimbursement.author.lastname}}
+                        </td>
+                        <td>
+                            {{reimbursement.reimbursementType.reimbursement_type | titlecase}}
+                        </td>
+                        <td class="receipt">
+                            <fa-icon [icon]="faReceipt" class="btn p-0 m-0" type="button" data-toggle="modal" [attr.data-target]="'#reimb' + reimbursement.reimbursement_id" (click)="getImage(reimbursement)"></fa-icon>
+                            <div class="modal fade" id="reimb{{reimbursement.reimbursement_id}}" >
+                                <div class="modal-dialog modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-body hide-overflow" id="img{{reimbursement.reimbursement_id}}">
+                                            <img [src] = "img">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+
+                        <td class="approve">
+                                <div [ngSwitch]="reimbursement.reimbursementStatus.status">
+                                    <div *ngSwitchCase="'PENDING'">
+                                        <select class="form-control"  id="inputStatus" [(ngModel)]="reimbursements[i].tempStatus">
+                                            <option *ngFor="let reimbStatus of reimbStatesTwo; let j = index" [value] = "reimbStatus">{{reimbStatus}}</option>
+                                        </select>
+                                    </div>
+                                    <div *ngSwitchCase="'APPROVED'">
+                                        <select class="form-control" disabled>
+                                            <option selected>Accepted</option>
+                                        </select>
+                                    </div>
+                                    <div *ngSwitchCase="'DENIED'">
+                                        <select class="form-control" disabled>
+                                            <option selected>Denied</option>
+                                        </select>
+                                    </div>
+
+                                </div>
+                                
+                        </td>
+                        <!-- <td class="approve">
+                            <input type="radio" name="gridRadios{{reimbursement.reimbursement_id}}" id="gridRadiosApp{{reimbursement.reimbursement_id}}" value="approve" (change)="updateTempStatus(reimbursement, 'approve')">
+                        </td>
+                        <td class="deny">
+                            <input type="radio" name="gridRadios{{reimbursement.reimbursement_id}}" id="gridRadiosDen{{reimbursement.reimbursement_id}}" value="deny" (change)="updateTempStatus(reimbursement, 'deny')">
+                        </td> -->
+                    </tr>
+                </tbody>
+                
+            </table>
+            <div class="row">
+                <div class="col-sm-2 offset-10">
+                    <button class="btn btn-outline-dark float-right" (click)="submitReimbs()">Update Reimbursements</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

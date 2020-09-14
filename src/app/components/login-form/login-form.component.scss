@@ -1,0 +1,44 @@
+.flx {
+    // display: flex;
+    // align-content: center;
+    // justify-content: center;
+    float: right;
+}
+
+#uname-label {
+    display: none;
+} 
+#pass-label{
+    display: none;
+}
+@media (min-width: 576px) {
+    .floater {
+        float: right;
+    }
+    #uname-label {
+        display: block;
+    } 
+    #pass-label{
+        display: block;
+    }
+}
+
+.primary-button-color {
+    background-color: #F46666;
+    color: #F5F5F5;
+}
+
+.secondary-button-color {
+    background-color: white;
+    border: 1px solid #AfAfc4;
+    color: #AfAfc4
+}
+
+.secondary-button-color:hover {
+    background-color: #AfAfc4;
+    color: white;
+}
+
+.margin-top {
+    margin-top: 5%;
+}

@@ -1,0 +1,16 @@
+
+  <nav class="navbar navbar-default navbar-sticky-top bg-white custom shadow under-margin">
+    <div class="container">
+      <a class="navbar-brand" href="/login">
+        <div class="box">
+          <h2 class="inner-text">R</h2>
+        </div>
+      </a>
+      <div class="margin-left" *ngIf="loggedIn">
+        <button class="btn btn-outline-dark rounded-0" type="button" (click)="Signout()">Signout</button>
+      </div>
+      <div class="margin-left"*ngIf="!loggedIn">
+        <button class="btn btn-outline-dark rounded-0" type="button" (click)="Signin()">Sign-In</button>
+      </div>
+    </div>
+</nav>

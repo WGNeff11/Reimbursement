@@ -1,0 +1,122 @@
+<div class="landing-page-contatiner container">
+    <div class="welcome-header">
+        <p class="extra-big-header">Hello, <br> {{firstName}} {{lastName}}</p>
+    </div>
+    <div class="info-container">
+        <div class="row no-gutters">
+            <div class="col-sm-4">
+                <div class="right-border text-center">
+                    <h2>Pending</h2>
+                    <h1>{{pendingCount}}</h1>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="right-border text-center">
+                    <h2>Approved</h2>
+                    <h1>{{approvedCount}}</h1>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="text-center">
+                    <h2>Denied</h2>
+                    <h1>{{deniedCount}}</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row marg-bottom no-gutters">
+        <div class="col-sm-6 flx">
+            <input type="text" [(ngModel)]="searchText" class="form-control set-box rounded-1" placeholder="Search Reimbursements"/>
+        </div>
+        <div class="col-sm-2 flx small-gutter">
+            <select class="form-control" id="inputType" [(ngModel)]="filterByType">
+                <option *ngFor="let reimbType of reimbTypes" [value] = "reimbType">{{reimbType}}</option>
+            </select>
+        </div>
+        <div class="col-sm-2 flx status-input small-gutter">
+            <select class="form-control" id="inputStatus" [(ngModel)]="filterByStatus">
+                <option *ngFor="let reimbStatus of reimbStates" [value] = "reimbStatus">{{reimbStatus}}</option>
+            </select>
+        </div>
+        <div class="col-sm-2 float-right">
+            <button class="btn btn-outline-dark rounded-1 float-right" id="#del-right-margin" type="button" data-toggle="modal" data-target="#reimbursementModal"><span><fa-icon [icon]="faPlus"></fa-icon></span></button>
+        </div>    
+    </div>
+    <div class="margins row">
+        <div class="col-sm-12">
+            <table class="table table-bordered table-striped">
+                <tr class="table-row">
+                    <th class="amount">
+                        Reimbursement Amount
+                    </th>
+                    <th class="date">
+                        Day Submitted
+                    </th>
+                    <th class="description">
+                        Description
+                    </th>
+                    <th class="resolver">
+                        Resolver
+                    </th>
+                    <th class="type">
+                        Type
+                    </th>
+                    <th class="status">
+                        Status
+                    </th>
+                    <th class="receipt">
+                        Receipt
+                    </th>
+                </tr>
+                <tbody>
+                    <tr class="table-row" *ngFor="let reimbursement of reimbursements | reimbursementPipe: searchText | reimbursementTypePipe : filterByType | reimbursementState: filterByStatus; index as i">
+                        <td class="amount">
+                            ${{reimbursement.reimb_amount}}
+                        </td>
+                        <td>
+                            {{reimbursement.timeSubmitted.month | titlecase}} {{reimbursement.timeSubmitted.dayOfMonth}}, {{reimbursement.timeSubmitted.year}}
+                        </td>
+                        <td>
+                           {{reimbursement.description}}
+                        </td>
+                        <td>
+                            {{reimbursement.resolver.firstname}} {{reimbursement.resolver.lastname}}
+                        </td>
+                        <td>
+                            {{reimbursement.reimbursementType.reimbursement_type | titlecase}}
+                        </td>
+                        <td>
+                            {{reimbursement.reimbursementStatus.status | titlecase}}
+                        </td>
+
+                        <td class="receipt">
+                            <fa-icon [icon]="faReceipt" class="btn p-0 m-0" type="button" data-toggle="modal" [attr.data-target]="'#reimb' + reimbursement.reimbursement_id" (click)="getImage(reimbursement)"></fa-icon>
+                            <div class="modal fade" id="reimb{{reimbursement.reimbursement_id}}" >
+                                <div class="modal-dialog modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-body hide-overflow" id="img{{reimbursement.reimbursement_id}}">
+                                            <img class="img-fluid"[src]="img">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>  
+                        </td>
+                    </tr>
+                </tbody>
+                
+            </table>
+        </div>
+    </div>
+
+    
+    <div class="modal fade" id="reimbursementModal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <app-reimbursement-form></app-reimbursement-form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,56 @@
+<div class="container">
+
+    <!-- <div class="row" [ngSwitch]="message">
+        <div class="col-sm-10 offset-2">
+            <div class="center-content">
+                <div *ngSwitchCase="'Login'">
+                   
+                </div>
+                <div *ngSwitchCase="'Registration'">
+                    <h1 class="center-content" name="header"> Please Register <br> to create Account. </h1>
+                </div>
+            </div>
+        
+        </div>
+    </div> -->
+    <div class="row">
+        <div class="col-sm-12" >
+            <div class="margin-top">
+                        <div [ngSwitch]="message"> 
+                            <div *ngSwitchCase="'Login'">
+                                        <div class="row">
+                                            <div class="col-xs-12 col-sm-10 offset-sm-2">
+                                                <h1 class="center-content" name="header"> Please login <br> to your account. </h1>
+                                            </div>
+                                        </div>
+                                        <div class="margin-top">
+                                            <div class="row">
+                                                <div class="col-sm-6 offset-3">
+                                                    <app-login-form></app-login-form>
+                                                </div>
+                                            </div>
+                                    </div>
+                                </div>
+                            <div *ngSwitchCase="'Registration'">
+                                    <div class="row">
+                                        <div class="col-xs-12 col-sm-10 offset-sm-2">
+                                            <h1 class="center-content" name="header"> Please register <br> to create account. </h1>
+                                        </div>
+                                    </div>
+                                    <div class="margin-top">
+                                        <div class="row">
+                                            <div class="col-sm-6 offset-sm-3">
+                                                <app-registration-form></app-registration-form>
+                                            </div>
+                                        </div>
+                                    </div>
+                            </div>
+                </div>
+            </div>
+
+        </div>
+        
+
+    </div>
+
+</div>

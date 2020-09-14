@@ -1,0 +1,105 @@
+.extra-big-header {
+    font-size: 48pt;
+    line-height: 100%;
+}
+
+.table-row > {
+    .amount {
+        width: 5%;
+    }
+    .date {
+        width: 20%;
+    }
+    .description{
+        width: 20%;
+    }
+    .resolver {
+        width: 20%;
+    }
+    .type{
+        width: 10%;
+    }
+    .status {
+        width: 10%;
+    }
+    .receipt{
+        width: 5%;
+        text-align: center;
+    }
+    .approve {
+        width: 20%;
+        text-align: center;
+    }
+    
+}
+
+
+.hide-overflow{
+    overflow: scroll;
+    
+}
+
+.marg{
+    margin-top: 5%;
+    margin-bottom: 1%;
+}
+
+.margins {
+    margin-bottom: 100px;
+    // margin-right: 0.75%;
+}
+
+.set-box {
+    padding-left: 10px;
+    // padding-right: 70%;
+}
+.landing-page-container {
+    margin-bottom: 40px;
+}
+#reimb12 {
+    color: red;
+}
+
+.flx {
+    display: flex;
+    justify-content: baseline;
+}
+.bold-letters{
+    font-weight: bold;
+}
+
+.marg-top {
+    margin-top: 5%;
+}
+
+
+.hide-overflow{
+    overflow: scroll;
+    
+}
+
+.small-gutter {
+    padding-left: 1%;
+}
+// .status-input {
+//     margin-left: -8.5%;
+//     margin-right: 8.5%;
+// }
+// .info-container {
+//     display: flex;
+//     align-content: center;
+//     justify-content: center;resolver {
+
+// }
+.right-border {
+    border-right: 1px solid #dadada;
+}
+
+.info-container {
+    margin: 5% 0;
+}
+
+.del-right-margin{
+    margin-right: -20px;
+    padding-right:-20px;
+}

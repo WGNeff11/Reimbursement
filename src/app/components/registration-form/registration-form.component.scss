@@ -1,0 +1,22 @@
+.flx {
+    // display: flex;
+    // align-content: center;
+    // justify-content: center;
+    float: right;
+}
+
+.primary-button-color {
+    background-color: #F46666;
+    color: #F5F5F5;
+}
+
+.secondary-button-color {
+    background-color: white;
+    border: 1px solid #AfAfc4;
+    color: #AfAfc4
+}
+
+.secondary-button-color:hover {
+    background-color: #AfAfc4;
+    color: white;
+}

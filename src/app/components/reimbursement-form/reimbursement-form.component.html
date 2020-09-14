@@ -1,0 +1,25 @@
+<div>
+    <form>
+        <div class="form-group">
+            <label for="reimb_amount">Reimbursement Amount</label>
+            <input [(ngModel)]="reimbursementFormModel.reimbAmount" name="reimb_amount" type="text" class="form-control" placeholder="50">
+        </div>
+        <div class="form-group">
+            <label for="reimb_description">Please describe the expenses</label>
+            <textarea cols="40" rows="5" class="form-control" [(ngModel)]="reimbursementFormModel.reimbDescription" name="reimb_description" type="text" placeholder="Reimbursement Description"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="reimbType">What kind of Reimbursment is this?</label>
+            <select [(ngModel)]="reimbursementFormModel.reimbType" class="form-control" name="reimbType">
+                <option *ngFor="let reimbType of reimb_types" [value]="reimbType">{{reimbType}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="reimbReciept">Please Upload Reciept</label>
+            <input type="file" name="reimbReciept" (change)="handleFileInput($event.target.files)" />
+        </div>
+        <div class="form-group">
+            <button class="btn btn-outline-dark" (click)="submitAndUpdateReimbursement()">Click to submit reimbursement.</button>
+        </div>
+    </form>
+</div>

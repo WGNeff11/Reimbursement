@@ -1,0 +1,27 @@
+<form class="test-display-none margin-top">
+    <div class="form-group row">
+        <div class="col-12">
+            <label for="identifier" id="uname-label">Username or Email:</label> 
+            <input [(ngModel)] = "identifier" id="identifier" class="form-control" type="text" name="identifier" aria-describedby="helpId" placeholder="JohnDoe">
+            <small id="helpId" class="text-muted pfd"></small>
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-12">
+            <label for="password" id="pass-label"> Password: </label>
+            <input [(ngModel)] = "password" id="password" class="form-control" type="password" name="password" aria-describedby="helpId" placeholder="Password">
+        </div>
+    </div>
+    <div class="form-group row">
+            <div class="col-sm-3">
+                <div class="float-left">
+                    <button type="button" id="toggleButton" class="btn secondary-button-color rounded-0" (click)='toggle()'> New User? </button>
+                </div>
+            </div>
+            <div class="col-sm-3 offset-sm-6">
+                <div class="floater">
+                    <button type="submit" class="btn primary-button-color rounded-0"id="submitButton" (click)="sendLogin()">Login</button>
+                </div>
+            </div>
+        </div>
+</form>
